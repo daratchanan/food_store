@@ -15,15 +15,46 @@ import logo from '../assets/logo.jpg';
 
 const { Header, Footer, Sider, Content } = Layout;
 
+const categories = [
+   {
+      key: 'cereals',
+      value: 'cereals'
+   },
+   {
+      key: 'chocolates',
+      value: 'chocolates'
+   },
+   {
+      key: 'groceries',
+      value: 'groceries'
+   },
+   {
+      key: 'mushrooms',
+      value: 'mushrooms'
+   },
+   {
+      key: 'truffles',
+      value: 'truffles'
+   },
+];
+
+const capitalize = (txt) => {
+   const st = txt[0].toUpperCase();
+   const newTxt = txt.slice(1);
+   const result = st + newTxt;
+   return result;
+};
+
+
 export default function Home() {
    return (
       <Layout>
          {/* <Header
             style={{ background: '#fff' }}
          > */}
-         <Row style={{ padding: '0px 24px' }}>
+         <Row style={{ padding: '20px 24px' }} gutter={[24, 24]}>
             <Col xs={24}>
-               <Row justify='space-between'>
+               <Row justify='space-between' >
                   <Col>
                      <img
                         src={logo}
@@ -49,9 +80,15 @@ export default function Home() {
                </Row>
             </Col>
 
-            <Col>
-               <Button>cake</Button>
-            </Col>
+            {categories.map(cat =>
+               <Col key={cat.key} >
+                  <Button
+                     type='text'
+                  >
+                     {capitalize(cat.value)}
+                  </Button>
+               </Col>
+            )}
          </Row>
          {/* </Header> */}
 
