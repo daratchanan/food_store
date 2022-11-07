@@ -11,32 +11,17 @@ import {
    ShoppingCartOutlined
 } from '@ant-design/icons';
 import logo from '../assets/logo.jpg';
-
+import CarouselSlick from '../components/CarouselSlick';
+import { categories } from '../mockup/data';
+import { imageSlide } from '../mockup/data';
+import { newProducts } from '../mockup/data';
+import { products } from '../mockup/data';
+import CartShopping from '../components/CartShopping';
+import NewProducts from '../components/NewProducts';
+import Products from '../components/Products';
 
 const { Header, Footer, Sider, Content } = Layout;
 
-const categories = [
-   {
-      key: 'cereals',
-      value: 'cereals'
-   },
-   {
-      key: 'chocolates',
-      value: 'chocolates'
-   },
-   {
-      key: 'groceries',
-      value: 'groceries'
-   },
-   {
-      key: 'mushrooms',
-      value: 'mushrooms'
-   },
-   {
-      key: 'truffles',
-      value: 'truffles'
-   },
-];
 
 const capitalize = (txt) => {
    const st = txt[0].toUpperCase();
@@ -89,13 +74,23 @@ export default function Home() {
                   </Button>
                </Col>
             )}
+
+            <Col xs={24}>
+               <CarouselSlick imageSlide={imageSlide} />
+            </Col>
          </Row>
          {/* </Header> */}
 
-         {/* <Layout>
-            <Sider style={{ background: 'lightblue' }}>Sider</Sider>
-            <Content>Content</Content>
-         </Layout> */}
+         <Layout style={{ padding: '20px 24px' }} gutter={[24, 24]}>
+            <Sider style={{ background: 'lightblue' }}>
+               <CartShopping />
+               <NewProducts newProducts={newProducts} />
+            </Sider>
+
+            <Content>
+               <Products products={products} />
+            </Content>
+         </Layout>
 
       </Layout>
    )
