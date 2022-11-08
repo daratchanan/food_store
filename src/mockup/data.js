@@ -93,7 +93,7 @@ export const products = [
    {
       id: 3,
       name: 'pomegranate',
-      category: 'cake',
+      category: 'fruit',
       price: 100,
       rating: 3,
       img: 'https://cdn.pixabay.com/photo/2018/05/08/20/19/pomegranate-3383814__340.jpg'
@@ -107,7 +107,7 @@ export const products = [
       img: 'https://cdn.pixabay.com/photo/2018/05/01/18/21/eclair-3366430__340.jpg'
    },
    {
-      id: 1,
+      id: 5,
       name: 'meet berger',
       category: 'hamberger',
       price: 200,
@@ -115,7 +115,7 @@ export const products = [
       img: 'https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246__340.jpg'
    },
    {
-      id: 1,
+      id: 6,
       name: 'mixFruits',
       category: 'fruit',
       price: 100,

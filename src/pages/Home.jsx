@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
    Button,
    Col,
@@ -32,6 +32,8 @@ const capitalize = (txt) => {
 
 
 export default function Home() {
+   const [cart, setCart] = useState([]);
+
    return (
       <Layout>
          {/* <Header
@@ -88,7 +90,11 @@ export default function Home() {
             </Sider>
 
             <Content>
-               <Products products={products} />
+               <Products
+                  products={products}
+                  cart={cart}
+                  setCart={setCart}
+               />
             </Content>
          </Layout>
 

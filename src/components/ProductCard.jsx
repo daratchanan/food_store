@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
    Button,
    Col,
@@ -13,7 +13,18 @@ import {
    PlusOutlined
 } from '@ant-design/icons';
 
-export default function ProductCard({ products }) {
+export default function ProductCard({ product, cart, setCart }) {
+   const [orderItems, setOrderItems] = useState({ ...product, qty: 1 });
+
+   const onSelectProducts = () => {
+      setCart([orderItems])
+   };
+
+   // console.log('products=>', products)
+   // console.log('qty=>', qty)
+   // console.log('orderItems=>', orderItems)
+   console.log('cart=>', cart);
+
    return (
       <Row
          gutter={[0, 10]}
@@ -24,26 +35,26 @@ export default function ProductCard({ products }) {
       >
          <Col xs={24}>
             <img
-               src={products.img}
-               alt={products.name}
+               src={product.img}
+               alt={product.name}
                width='100%'
             />
          </Col>
 
          <Col xs={24}>
-            <Typography.Text>{products.name}</Typography.Text>
+            <Typography.Text>{product.name}</Typography.Text>
          </Col>
 
          <Col xs={24}>
             <Row justify='space-between'>
                <Col>
                   <Rate
-                     defaultValue={products.rating}
+                     defaultValue={product.rating}
                      style={{ fontSize: '15px' }}
                   />
                </Col>
                <Col>
-                  <Typography.Text>$ {products.price}</Typography.Text>
+                  <Typography.Text>$ {product.price}</Typography.Text>
                </Col>
             </Row>
          </Col>
@@ -52,14 +63,23 @@ export default function ProductCard({ products }) {
             <Row justify='center'>
                <Col>
                   <Space >
-                     <Button icon={<MinusOutlined />} />
+                     <Button
+                        icon={<MinusOutlined />}
+                        disabled={orderItems.qty <= 1}
+                        onClick={() => setOrderItems(prev => ({ ...prev, qty: prev.qty - 1 }))}
+                     />
                      <div className='input-qty'>
                         <InputNumber
                            style={{ width: '100%' }}
                            controls={false}
+                           min={1}
+                           value={orderItems.qty}
                         />
                      </div>
-                     <Button icon={<PlusOutlined />} />
+                     <Button
+                        icon={<PlusOutlined />}
+                        onClick={() => setOrderItems(prev => ({ ...prev, qty: prev.qty + 1 }))}
+                     />
                   </Space>
                </Col>
             </Row>
@@ -69,6 +89,7 @@ export default function ProductCard({ products }) {
             <Button
                type='primary'
                style={{ width: '100%' }}
+               onClick={onSelectProducts}
             >
                สั่งอาหาร
             </Button>
