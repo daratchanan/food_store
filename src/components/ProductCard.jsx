@@ -14,15 +14,25 @@ import {
 } from '@ant-design/icons';
 
 export default function ProductCard({ product, cart, setCart }) {
-   const [orderItems, setOrderItems] = useState({ ...product, qty: 1 });
+   const [qty, setQty] = useState(1);
 
    const onSelectProducts = () => {
-      setCart([orderItems])
+      const oldCarts = [...cart]
+
+      const targetProduct = oldCarts.find(f => f.id === product.id);
+
+      if (!targetProduct) {
+         oldCarts.push({ ...product, qty: qty });
+         setCart(oldCarts)
+      } else {
+         const index = oldCarts.indexOf(targetProduct);
+         oldCarts[index].qty = oldCarts[index].qty + qty;
+         setCart(oldCarts)
+      };
    };
 
-   // console.log('products=>', products)
+   // console.log('product=>', product)
    // console.log('qty=>', qty)
-   // console.log('orderItems=>', orderItems)
    console.log('cart=>', cart);
 
    return (
@@ -65,20 +75,21 @@ export default function ProductCard({ product, cart, setCart }) {
                   <Space >
                      <Button
                         icon={<MinusOutlined />}
-                        disabled={orderItems.qty <= 1}
-                        onClick={() => setOrderItems(prev => ({ ...prev, qty: prev.qty - 1 }))}
+                        disabled={qty <= 1}
+                        onClick={() => setQty(prev => prev <= 1 ? 1 : prev - 1)}
                      />
                      <div className='input-qty'>
                         <InputNumber
                            style={{ width: '100%' }}
                            controls={false}
                            min={1}
-                           value={orderItems.qty}
+                           value={qty}
+                           onChange={(value) => setQty(value)}
                         />
                      </div>
                      <Button
                         icon={<PlusOutlined />}
-                        onClick={() => setOrderItems(prev => ({ ...prev, qty: prev.qty + 1 }))}
+                        onClick={() => setQty(prev => prev + 1)}
                      />
                   </Space>
                </Col>
