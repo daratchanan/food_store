@@ -4,10 +4,13 @@ import {
    Col,
    Divider,
    Row,
+   Statistic,
    Typography
 } from 'antd'
 
-export default function CartShopping() {
+export default function CartTotal({ carts }) {
+   const totalPrice = carts.reduce((prev, cur) => prev + (cur.price * cur.qty), 0)
+
    return (
       <div style={{ padding: '10px' }}>
          <Typography.Title level={5}>CART</Typography.Title>
@@ -33,8 +36,12 @@ export default function CartShopping() {
                   <Col>
                      <Typography.Text>Total</Typography.Text>
                   </Col>
-                  <Col>
-                     <Typography.Text>$ 0.00</Typography.Text>
+                  <Col >
+                     <Statistic
+                        prefix='$'
+                        value={totalPrice}
+                        valueStyle={{ fontSize: '16px' }}
+                     />
                   </Col>
                </Row>
             </Col>

@@ -13,27 +13,27 @@ import {
    PlusOutlined
 } from '@ant-design/icons';
 
-export default function ProductCard({ product, cart, setCart }) {
+export default function ProductCard({ product, carts, setCarts }) {
    const [qty, setQty] = useState(1);
 
    const onSelectProducts = () => {
-      const oldCarts = [...cart]
+      const oldCarts = [...carts]
 
       const targetProduct = oldCarts.find(f => f.id === product.id);
 
       if (!targetProduct) {
          oldCarts.push({ ...product, qty: qty });
-         setCart(oldCarts)
+         setCarts(oldCarts)
       } else {
          const index = oldCarts.indexOf(targetProduct);
          oldCarts[index].qty = oldCarts[index].qty + qty;
-         setCart(oldCarts)
+         setCarts(oldCarts)
       };
    };
 
    // console.log('product=>', product)
    // console.log('qty=>', qty)
-   console.log('cart=>', cart);
+   console.log('carts=>', carts);
 
    return (
       <Row

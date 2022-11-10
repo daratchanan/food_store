@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Row, Typography } from 'antd';
 import ProductCard from './ProductCard';
 
-export default function Products({ products, cart, setCart }) {
+export default function Products({ products, carts, setCarts }) {
 
    // console.log('products=>', products);
    return (
@@ -13,8 +13,8 @@ export default function Products({ products, cart, setCart }) {
                <Col xs={24} sm={12} md={6} key={idx}>
                   <ProductCard
                      product={item}
-                     cart={cart}
-                     setCart={setCart}
+                     carts={carts}
+                     setCarts={setCarts}
                   />
                </Col>
             )}

@@ -7,18 +7,16 @@ import {
    Row,
    Space
 } from 'antd';
-import {
-   ShoppingCartOutlined
-} from '@ant-design/icons';
 import logo from '../assets/logo.jpg';
 import CarouselSlick from '../components/CarouselSlick';
 import { categories } from '../mockup/data';
 import { imageSlide } from '../mockup/data';
 import { newProducts } from '../mockup/data';
 import { products } from '../mockup/data';
-import CartShopping from '../components/CartShopping';
+import CartTotal from '../components/CartTotal';
 import NewProducts from '../components/NewProducts';
 import Products from '../components/Products';
+import ShoppingCart from '../components/ShoppingCart';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -32,7 +30,8 @@ const capitalize = (txt) => {
 
 
 export default function Home() {
-   const [cart, setCart] = useState([]);
+   const [carts, setCarts] = useState([]);
+
 
    return (
       <Layout>
@@ -55,13 +54,12 @@ export default function Home() {
                            // onSearch={onSearch}
                            style={{
                               width: 200,
+                              marginBottom: '20px'
                            }}
                         />
-                        <Row justify='end'>
-                           <Col>
-                              <ShoppingCartOutlined style={{ fontSize: '20px' }} />
-                           </Col>
-                        </Row>
+
+                        <ShoppingCart carts={carts} />
+
                      </Space>
                   </Col>
                </Row>
@@ -85,15 +83,15 @@ export default function Home() {
 
          <Layout style={{ padding: '20px 24px' }} gutter={[24, 24]}>
             <Sider style={{ background: 'lightblue' }}>
-               <CartShopping />
+               <CartTotal carts={carts} />
                <NewProducts newProducts={newProducts} />
             </Sider>
 
             <Content>
                <Products
                   products={products}
-                  cart={cart}
-                  setCart={setCart}
+                  carts={carts}
+                  setCarts={setCarts}
                />
             </Content>
          </Layout>
