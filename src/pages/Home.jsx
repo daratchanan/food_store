@@ -58,7 +58,7 @@ export default function Home() {
                            }}
                         />
 
-                        <ShoppingCart carts={carts} />
+                        <ShoppingCart carts={carts} setCarts={setCarts}/>
 
                      </Space>
                   </Col>

@@ -11,64 +11,116 @@ import {
 import {
    MinusOutlined,
    PlusOutlined,
-   MinusCircleOutlined,
-   PlusCircleOutlined
+   DeleteOutlined
 } from '@ant-design/icons';
 
 
-export default function CardOrder({ carts }) {
+export default function CardOrder({ orderItem, carts, setCarts }) {
+
+   const onDeleteItem = () => {
+      const tempCarts = [...carts];
+      const newCarts = tempCarts.filter(f => f.id !== orderItem.id);
+      setCarts(newCarts);
+   };
+
+   const onMinus = () => {
+      const newCarts = [...carts];
+      const index = newCarts.indexOf(orderItem);
+      newCarts[index].qty -= 1;
+      setCarts(newCarts);
+   };
+
+   const onPlus = () => {
+      const newCarts = [...carts];
+      const index = newCarts.indexOf(orderItem);
+      newCarts[index].qty += 1;
+      setCarts(newCarts);
+   };
+
+   const onChange = (value) => {
+      const newCarts = [...carts];
+      const index = newCarts.indexOf(orderItem);
+      newCarts[index].qty = value;
+      setCarts(newCarts);
+   };
+
+
+   console.log('carts=>', carts);
+   // console.log('orderItem=>', orderItem);
+
    return (
-      <Row gutter={[16, 0]} justify='space-between'>
-         <Col style={{ background: 'pink' }} >
-            <img
-               src='https://cdn.pixabay.com/photo/2016/06/08/19/46/cereal-1444495__340.jpg'
-               alt='image'
-               width='90px'
-            />
-         </Col>
+      <div style={{ padding: '8px 0px' }}>
+         <Row gutter={[16, 0]} justify='space-between' >
+            <Col >
+               <img
+                  src={orderItem.img}
+                  alt={orderItem.name}
+                  width='90px'
+               />
+            </Col>
 
-         <Col flex={1} style={{ background: 'lightblue' }}>
-            <Row>
-               <Col xs={24} style={{ background: 'pink' }}>
-                  <Row justify='space-between'>
-                     <Col>
-                        <Typography.Paragraph>crealmilk</Typography.Paragraph>
-                        <Statistic
-                           prefix='$'
-                           value={400}
-                           valueStyle={{ fontSize: '14px' }}
-                        />
-                     </Col>
-                     <Col>
-                        <Typography.Paragraph>Total</Typography.Paragraph>
-                        <Statistic
-                           prefix='$'
-                           value={400}
-                           valueStyle={{ fontSize: '14px' }}
-                        />
-                     </Col>
+            <Col flex={1} >
+               <Row>
+                  <Col xs={24} >
+                     <Row justify='space-between'>
+                        <Col>
+                           <Typography.Paragraph style={{ marginBottom: '0px' }}>{orderItem.name}</Typography.Paragraph>
+                           <Statistic
+                              prefix='$'
+                              value={orderItem.price}
+                              valueStyle={{ fontSize: '14px' }}
+                           />
+                        </Col>
+                        <Col>
+                           <Typography.Paragraph style={{ marginBottom: '0px' }}>Total</Typography.Paragraph>
+                           <Statistic
+                              prefix='$'
+                              value={orderItem.price * orderItem.qty}
+                              valueStyle={{ fontSize: '14px' }}
+                           />
+                        </Col>
 
-                  </Row>
-               </Col>
-            </Row>
-            <Row justify='center'>
-               <Col>
-                  <Space.Compact block>
-                     <Button size='small' icon={<MinusOutlined />} />
-                     <div className='input-qty'>
-                        <InputNumber
+                     </Row>
+                  </Col>
+               </Row>
+
+               <Row justify='center'>
+                  <Col>
+                     <Space>
+                        {orderItem.qty <= 1 ?
+                           <Button
+                              danger
+                              size='small'
+                              icon={<DeleteOutlined />}
+                              onClick={onDeleteItem}
+                           /> :
+                           <Button
+                              size='small'
+                              icon={<MinusOutlined />}
+                              onClick={onMinus}
+                           />
+                        }
+                        <div className='input-qty'>
+                           <InputNumber
+                              size='small'
+                              controls={false}
+                              min={1}
+                              value={orderItem.qty}
+                              onChange={onChange}
+                           />
+                        </div>
+                        <Button
                            size='small'
-                           controls={false}
-                           min={1}
+                           icon={<PlusOutlined />}
+                           onClick={onPlus}
                         />
-                     </div>
-                     <Button size='small' icon={<PlusOutlined />} />
-                  </Space.Compact>
-               </Col>
-            </Row>
+                     </Space>
+                  </Col>
+               </Row>
 
-         </Col>
+            </Col>
 
-      </Row>
+         </Row>
+      </div>
    )
 };

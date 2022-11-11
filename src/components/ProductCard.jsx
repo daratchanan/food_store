@@ -33,7 +33,7 @@ export default function ProductCard({ product, carts, setCarts }) {
 
    // console.log('product=>', product)
    // console.log('qty=>', qty)
-   console.log('carts=>', carts);
+   // console.log('carts=>', carts);
 
    return (
       <Row
