@@ -12,6 +12,9 @@ import {
    ShoppingCartOutlined
 } from '@ant-design/icons';
 import CardOrder from './CardOrder';
+import ShopGrandTotal from './ShopGrandTotal';
+import ShopPayTotal from './ShopPayTotal';
+import CardOrderNew from './CardOrderNew';
 
 export default function ShoppingCart({ carts, setCarts }) {
    const [open, setOpen] = useState(false);
@@ -41,10 +44,12 @@ export default function ShoppingCart({ carts, setCarts }) {
                   onClose={() => setOpen(false)}
                   open={open}
                >
+
+
                   <Row gutter={[16, 16]}>
                      {carts.map(c =>
                         <Col xs={24} key={c.id} style={{ background: '#F8F3F6' }}>
-                           <CardOrder
+                           <CardOrderNew 
                               orderItem={c}
                               carts={carts}
                               setCarts={setCarts}
@@ -53,30 +58,8 @@ export default function ShoppingCart({ carts, setCarts }) {
                      )}
                   </Row>
 
-                  <Row justify='space-between' style={{marginTop: '10px' }}>
-                     <Col>
-                        <Typography.Text
-                           style={{
-                              fontSize: '16px',
-                              fontWeight: 'bold',
-                              color: '#FF0270'
-                           }}
-                        >
-                           Grand Total
-                        </Typography.Text>
-                     </Col>
-                     <Col>
-                        <Statistic
-                           prefix='$'
-                           value={totalPrice}
-                           valueStyle={{
-                              fontSize: '16px',
-                              fontWeight: 'bold',
-                              color: '#FF0270'
-                           }}
-                        />
-                     </Col>
-                  </Row>
+                  <ShopPayTotal carts={carts} />
+                  {/* <ShopGrandTotal carts={carts}/> */}
 
                </Drawer>
             </Badge>

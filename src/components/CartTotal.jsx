@@ -47,24 +47,15 @@ export default function CartTotal({ carts }) {
             </Col>
 
             <Col xs={24}>
-               <Row justify='center'>
+               <Row justify='center' gutter={[5,0]}>
                   <Col>
-                     <Button
-                        type='primary'
-                        style={{
-                           borderRadius: '5px'
-                        }}
-                     >
+                     <Button type='primary'>
                         Cart
                      </Button>
                   </Col>
                   <Col>
                      <Button
                         type='primary'
-                        style={{
-                           borderRadius: '5px',
-                           marginLeft: '5px'
-                        }}
                      >Check out</Button>
                   </Col>
                </Row>
