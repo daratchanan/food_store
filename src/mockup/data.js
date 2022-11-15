@@ -1,5 +1,9 @@
 export const categories = [
    {
+      key: 'all',
+      value: 'all'
+   },
+   {
       key: 'steak',
       value: 'steak'
    },
@@ -122,4 +126,21 @@ export const products = [
       rating: 4,
       img: 'https://cdn.pixabay.com/photo/2017/06/02/18/24/watermelon-2367029__340.jpg'
    },
+   {
+      id: 7,
+      name: 'pork berger',
+      category: 'hamberger',
+      price: 200,
+      rating: 3,
+      img: 'https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246__340.jpg'
+   },
+   {
+      id: 8,
+      name: 'watermelon',
+      category: 'fruit',
+      price: 100,
+      rating: 4,
+      img: 'https://cdn.pixabay.com/photo/2017/06/02/18/24/watermelon-2367029__340.jpg'
+   },
+  
 ];

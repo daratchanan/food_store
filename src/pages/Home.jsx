@@ -31,6 +31,20 @@ const capitalize = (txt) => {
 
 export default function Home() {
    const [carts, setCarts] = useState([]);
+   const [data, setData] = useState(products);
+
+   const onClick = (cat) => {
+      // console.log('cat=>', cat);
+      if (cat.value !== 'all') {
+         const targetCategory = products.filter(f => f.category === cat.value);
+         setData(targetCategory);
+      } else {
+         setData(products)
+      };
+   };
+   console.log('products=>', products);
+   console.log('data=>', data);
+   // console.log('filterData=>', filterData);
 
 
    return (
@@ -58,7 +72,7 @@ export default function Home() {
                            }}
                         />
 
-                        <ShoppingCart carts={carts} setCarts={setCarts}/>
+                        <ShoppingCart carts={carts} setCarts={setCarts} />
 
                      </Space>
                   </Col>
@@ -69,6 +83,7 @@ export default function Home() {
                <Col key={cat.key} >
                   <Button
                      type='text'
+                     onClick={() => onClick(cat)}
                   >
                      {capitalize(cat.value)}
                   </Button>
@@ -89,7 +104,7 @@ export default function Home() {
 
             <Content>
                <Products
-                  products={products}
+                  products={data}
                   carts={carts}
                   setCarts={setCarts}
                />
