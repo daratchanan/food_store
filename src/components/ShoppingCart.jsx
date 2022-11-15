@@ -46,11 +46,14 @@ export default function ShoppingCart({ carts, setCarts }) {
                >
 
 
-                  <Row gutter={[16, 16]}>
-                     {carts.map(c =>
-                        <Col xs={24} key={c.id} style={{ background: '#F8F3F6' }}>
-                           <CardOrderNew 
+                  <Row >
+                     {carts.map((c, idx) =>
+                        <Col xs={24} key={c.id}
+                           style={{ background: idx % 2 !== 0 ? '#F8F3F6' : '#fff' }}
+                        >
+                           <CardOrderNew
                               orderItem={c}
+                              idx={idx}
                               carts={carts}
                               setCarts={setCarts}
                            />
