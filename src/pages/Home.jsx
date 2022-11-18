@@ -34,7 +34,6 @@ export default function Home() {
    const [data, setData] = useState(products);
 
    const onClick = (cat) => {
-      // console.log('cat=>', cat);
       if (cat.value !== 'all') {
          const targetCategory = products.filter(f => f.category === cat.value);
          setData(targetCategory);
@@ -42,8 +41,8 @@ export default function Home() {
          setData(products)
       };
    };
-   console.log('products=>', products);
-   console.log('data=>', data);
+   // console.log('products=>', products);
+   // console.log('data=>', data);
    // console.log('filterData=>', filterData);
 
 

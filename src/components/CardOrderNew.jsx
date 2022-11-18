@@ -14,6 +14,7 @@ import {
    MinusOutlined,
    PlusOutlined
 } from '@ant-design/icons';
+import { motion } from 'framer-motion';
 
 export default function CardOrderNew({ idx, orderItem, carts, setCarts }) {
    const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,11 +48,19 @@ export default function CardOrderNew({ idx, orderItem, carts, setCarts }) {
    };
 
 
-   console.log('carts=>', carts);
+   // console.log('carts=>', carts);
    // console.log('orderItem=>', orderItem);
 
    return (
-      <div style={{ padding: '8px' }}>
+      <motion.div
+         animate={'open'}
+         style={{ padding: '8px' }}
+         whileHover={{ scale: 1.05 }}
+         // variants={{
+         //    open: { opacity: 1, transition: { staggerChildren: 0.5, delayChildren: 0.2 }, },
+         //    closed: { opacity: 0 },
+         // }}
+      >
          <Row>
             <Col xs={24}>
                <Row gutter={[5, 0]}>
@@ -67,9 +76,9 @@ export default function CardOrderNew({ idx, orderItem, carts, setCarts }) {
                      <Button
                         shape='circle'
                         size='small'
-                        icon={<CloseOutlined />} 
+                        icon={<CloseOutlined />}
                         onClick={onDeleteItem}
-                        />
+                     />
                   </Col>
                </Row>
             </Col>
@@ -82,7 +91,7 @@ export default function CardOrderNew({ idx, orderItem, carts, setCarts }) {
                         <Col>
                            <Statistic
                               prefix='฿'
-                              suffix={<span style={{color: 'lightgray', fontSize: '12px'}}>/ หน่วย</span>}
+                              suffix={<span style={{ color: 'lightgray', fontSize: '12px' }}>/ หน่วย</span>}
                               value={orderItem.price}
                               valueStyle={{ fontSize: '14px' }}
                            />
@@ -150,6 +159,6 @@ export default function CardOrderNew({ idx, orderItem, carts, setCarts }) {
             {orderItem.name}
             <Typography.Paragraph style={{ marginTop: '10px' }}>ยืนยันเพื่อยกเลิกสินค้า ?</Typography.Paragraph>
          </Modal>
-      </div>
+      </motion.div>
    )
 };

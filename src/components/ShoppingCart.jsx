@@ -16,6 +16,7 @@ import ShopGrandTotal from './ShopGrandTotal';
 import ShopPayTotal from './ShopPayTotal';
 import CardOrderNew from './CardOrderNew';
 
+
 export default function ShoppingCart({ carts, setCarts }) {
    const [open, setOpen] = useState(false);
 
@@ -44,8 +45,6 @@ export default function ShoppingCart({ carts, setCarts }) {
                   onClose={() => setOpen(false)}
                   open={open}
                >
-
-
                   <Row >
                      {carts.map((c, idx) =>
                         <Col xs={24} key={c.id}
